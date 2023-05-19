@@ -1,15 +1,15 @@
 const Avatar = (props) => (
   <svg
-    width={174}
-    height={223}
-    viewBox="0 0 174 223"
+    width={24}
+    height={24}
     fill="none"
+    className="rounded-xl"
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
     {...props}
   >
-    <rect width={174} height={223} fill="white" />
-    <rect width={174} height={223} fill="url(#pattern0)" />
+    <rect width={24} height={24} fill="none" />
+    <rect width={24} height={24} fill="url(#pattern0)" />
     <defs>
       <pattern
         id="pattern0"

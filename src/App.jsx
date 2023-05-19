@@ -64,7 +64,10 @@ function App() {
       {/* Main container with 2 partitions*/}
       <div className="flex bg-black">
         {/* Nav on the left */}
-        <div className=" h-screen w-1/12 z-0 flex justify-center">
+        <div
+          className="  z-0 flex justify-center"
+          style={{ height: "1006px", width: "108px" }}
+        >
           {/* Inner container for icons */}
           <div className="flex flex-col justify-between">
             {/* logo  */}
@@ -78,7 +81,7 @@ function App() {
                 <li className="">
                   <button
                     id="homebutton"
-                    className="px-16 py-2 transition delay-300"
+                    className="px-10 py-2"
                     onClick={handleHome}
                   >
                     <Home strokecolor={homecolor} />
@@ -89,7 +92,7 @@ function App() {
                 <li>
                   <button
                     id="listingbutton"
-                    className="px-16  py-2"
+                    className="px-10  py-2 "
                     onClick={handleListing}
                   >
                     <Listing strokecolor={listingcolor} />
@@ -99,7 +102,7 @@ function App() {
                 <li>
                   <button
                     id="settingbutton"
-                    className="px-16  py-2"
+                    className="px-10  py-2"
                     onClick={handleSetting}
                   >
                     <Setting strokecolor={settingcolor} />
@@ -114,7 +117,10 @@ function App() {
           </div>
         </div>
         {/* Dashboard on the right */}
-        <div className="bg-greylevel3 h-screen w-11/12 z-10 rounded-r-none rounded-l-3xl">
+        <div
+          className="bg-greylevel3 z-10 rounded-r-none rounded-l-3xl "
+          style={{ height: "1006px", width: "1332px" }}
+        >
           {/* Main container  */}
           <Dashboard />
         </div>
