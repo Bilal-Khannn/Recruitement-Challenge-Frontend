@@ -4,7 +4,7 @@ import nft1 from "../assets/nft1.png";
 const Card = (props) => {
   return (
     <div
-      className=" mr-8 bg-black px-1 rounded-xl flex flex-col justify-center items-center"
+      className=" mr-8 bg-black px-1 rounded-2xl flex flex-col justify-center items-center"
       style={{ width: "388px", height: "600px" }}
     >
       {/* title and options  */}

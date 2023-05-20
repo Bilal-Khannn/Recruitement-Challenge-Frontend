@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Logo from "../icons/Logo";
 
+import Logo from "../icons/Logo";
 import Home from "../icons/Home";
 import Listing from "../icons/Listing";
 import Setting from "../icons/Setting";
@@ -71,12 +71,13 @@ const Nav = () => {
         </div>
         {/* icons */}
         <div className="flex justify-center">
-          <ul className="space-y-16">
+          <ul className="space-y-12">
             {/* Home  */}
             <li className="">
               <button
                 id="homebutton"
-                className={`px-10 py-2 border-l-2 border-l-${homebordercolor} transition delay-75`}
+                style={{ borderLeft: `2px solid ${homebordercolor}` }}
+                className={`px-10 py-2  transition delay-75`}
                 onClick={handleHome}
               >
                 <Home strokecolor={homecolor} />
@@ -87,7 +88,8 @@ const Nav = () => {
             <li>
               <button
                 id="listingbutton"
-                className={`px-10 py-2 border-l-2 border-l-${listingbordercolor} transition delay-75`}
+                style={{ borderLeft: `2px solid ${listingbordercolor}` }}
+                className={`px-10 py-2  transition delay-75`}
                 onClick={handleListing}
               >
                 <Listing strokecolor={listingcolor} />
@@ -97,7 +99,8 @@ const Nav = () => {
             <li>
               <button
                 id="settingbutton"
-                className={`px-10 py-2 border-l-2 border-l-${settingbordercolor} transition delay-75`}
+                style={{ borderLeft: `2px solid ${settingbordercolor}` }}
+                className={`px-10 py-2 transition delay-75`}
                 onClick={handleSetting}
               >
                 <Setting strokecolor={settingcolor} />

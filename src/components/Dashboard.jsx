@@ -4,9 +4,30 @@ import Avatar from "../icons/Avatar";
 import Refresh from "../icons/Refresh";
 import Back from "../icons/Back";
 import Forward from "../icons/Forward";
-
 import Card from "./Card";
+import { PublicKey } from "@solana/web3.js";
+
+import metaplex from "../utils/metaplex";
+import { useEffect, useState } from "react";
+
 const Dashboard = () => {
+  const [nfts, setNfts] = useState("");
+
+  // fetch nfts here
+  useEffect(() => {
+    const ownerPublicKey = new PublicKey(
+      "narfn77NVRRfa4frg1KZykyFrJ1f9eMGnzXeMn2ja1X"
+    );
+    const fetchData = async () => {
+      const myNfts = await metaplex.nfts().findAllByOwner({
+        owner: ownerPublicKey,
+      });
+      setNfts(myNfts);
+    };
+
+    fetchData();
+  }, []);
+
   const array = [1, 2, 3];
   return (
     <div>
@@ -46,7 +67,7 @@ const Dashboard = () => {
         </div>
       </div>
       {/* nft listing cards  */}
-      <div className="mt-24 ml-14 flex mb-10 2xl:justify-around">
+      <div className="mt-24 ml-14 flex mb-6 2xl:justify-around">
         {/* Render cards here*/}
         {array.map((i) => {
           return <Card key={i} />;
@@ -54,7 +75,7 @@ const Dashboard = () => {
       </div>
       {/* next and previous buttons  */}
       <div
-        className="w-1/6 bg-black flex justify-between mx-auto rounded-full"
+        className="w-1/5 bg-black flex justify-between mx-auto rounded-full"
         style={{ height: "78px" }}
       >
         <button className="text-white m-3 px-5  bg-greylevel2 rounded-full">
