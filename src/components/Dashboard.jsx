@@ -2,10 +2,12 @@ import Eth from "../icons/Eth";
 import Arrow from "../icons/Arrow";
 import Avatar from "../icons/Avatar";
 import Refresh from "../icons/Refresh";
-import Option from "../icons/Option";
-import nft1 from "../assets/nft1.png";
+import Back from "../icons/Back";
+import Forward from "../icons/Forward";
+
 import Card from "./Card";
 const Dashboard = () => {
+  const array = [1, 2, 3];
   return (
     <div>
       {/* Price and user profile  */}
@@ -44,9 +46,23 @@ const Dashboard = () => {
         </div>
       </div>
       {/* nft listing cards  */}
-      <div className="mt-24 ml-14 flex mb-10">
+      <div className="mt-24 ml-14 flex mb-10 2xl:justify-around">
         {/* Render cards here*/}
-        <Card />
+        {array.map((i) => {
+          return <Card key={i} />;
+        })}
+      </div>
+      {/* next and previous buttons  */}
+      <div
+        className="w-1/6 bg-black flex justify-between mx-auto rounded-full"
+        style={{ height: "78px" }}
+      >
+        <button className="text-white m-3 px-5  bg-greylevel2 rounded-full">
+          <Back />
+        </button>
+        <button className="text-white m-3 px-5  bg-greylevel2 rounded-full">
+          <Forward />
+        </button>
       </div>
     </div>
   );

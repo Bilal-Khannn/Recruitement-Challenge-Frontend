@@ -118,8 +118,8 @@ function App() {
         </div>
         {/* Dashboard on the right */}
         <div
-          className="bg-greylevel3 z-10 rounded-r-none rounded-l-3xl "
-          style={{ height: "1006px", width: "1332px" }}
+          className="bg-greylevel3 z-10 rounded-r-none rounded-l-3xl w-screen"
+          style={{ height: "1006px" }}
         >
           {/* Main container  */}
           <Dashboard />
