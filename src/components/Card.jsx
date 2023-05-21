@@ -1,8 +1,23 @@
 import Option from "../icons/Option";
 // import nft1 from "../assets/nft1.png";
 import propTypes from "prop-types";
+import { useState, useEffect } from "react";
 
-const Card = ({ name, ownerAddress, mintAddress, tokenAddress, img }) => {
+const Card = ({ name, ownerAddress, mintAddress, tokenAddress, URI }) => {
+  const [imgSrc, setImgSrc] = useState("");
+
+  useEffect(() => {
+    const fetchImageData = async () => {
+      const uri = URI;
+      const data = await fetch(uri);
+      const parsed = await data.json();
+      const image = parsed.image;
+      setImgSrc(image);
+    };
+
+    fetchImageData();
+  }, [URI]);
+
   // shorten the addressess for display
   let address = ownerAddress;
   let firstFive = address.substring(0, 5);
@@ -34,7 +49,7 @@ const Card = ({ name, ownerAddress, mintAddress, tokenAddress, img }) => {
       </div>
       {/* image  */}
       <div>
-        <img src={img} alt="" style={{ height: "364px", width: "364px" }} />
+        <img src={imgSrc} alt="" style={{ height: "364px", width: "364px" }} />
       </div>
       {/* details  */}
       <div
@@ -69,7 +84,7 @@ Card.propTypes = {
   ownerAddress: propTypes.string.isRequired,
   mintAddress: propTypes.string.isRequired,
   tokenAddress: propTypes.string.isRequired,
-  img: propTypes.string.isRequired,
+  URI: propTypes.string.isRequired,
 };
 
 export default Card;

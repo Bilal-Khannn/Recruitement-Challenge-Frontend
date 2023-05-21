@@ -12,7 +12,6 @@ import { useEffect, useState } from "react";
 
 const Dashboard = () => {
   const [nft, setNft] = useState("");
-  const [img, setImg] = useState("");
 
   // fetch nfts here
   useEffect(() => {
@@ -28,8 +27,6 @@ const Dashboard = () => {
       console.log(myNfts[1].creators[0].address.toBase58());
       console.log(myNfts[1].mintAddress.toBase58());
       console.log(myNfts[1].address.toBase58());
-      const image = myNfts[1].uri;
-      setImg(image);
     };
 
     fetchData();
@@ -85,7 +82,7 @@ const Dashboard = () => {
                 ownerAddress={nft[i].creators[0].address.toBase58()}
                 mintAddress={nft[i].mintAddress.toBase58()}
                 tokenAddress={nft[i].address.toBase58()}
-                image={img}
+                URI={nft[i].uri}
               />
             );
           })}
