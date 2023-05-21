@@ -11,7 +11,8 @@ import metaplex from "../utils/metaplex";
 import { useEffect, useState } from "react";
 
 const Dashboard = () => {
-  const [nfts, setNfts] = useState("");
+  const [nft, setNft] = useState("");
+  const [img, setImg] = useState("");
 
   // fetch nfts here
   useEffect(() => {
@@ -22,7 +23,13 @@ const Dashboard = () => {
       const myNfts = await metaplex.nfts().findAllByOwner({
         owner: ownerPublicKey,
       });
-      setNfts(myNfts);
+      setNft(myNfts);
+      console.log(myNfts[1]);
+      console.log(myNfts[1].creators[0].address.toBase58());
+      console.log(myNfts[1].mintAddress.toBase58());
+      console.log(myNfts[1].address.toBase58());
+      const image = myNfts[1].uri;
+      setImg(image);
     };
 
     fetchData();
@@ -69,9 +76,19 @@ const Dashboard = () => {
       {/* nft listing cards  */}
       <div className="mt-24 ml-14 flex mb-6 2xl:justify-around">
         {/* Render cards here*/}
-        {array.map((i) => {
-          return <Card key={i} />;
-        })}
+        {nft &&
+          array.map((i) => {
+            return (
+              <Card
+                key={i}
+                name={nft[i].name}
+                ownerAddress={nft[i].creators[0].address.toBase58()}
+                mintAddress={nft[i].mintAddress.toBase58()}
+                tokenAddress={nft[i].address.toBase58()}
+                image={img}
+              />
+            );
+          })}
       </div>
       {/* next and previous buttons  */}
       <div

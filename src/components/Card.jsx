@@ -1,7 +1,24 @@
 import Option from "../icons/Option";
-import nft1 from "../assets/nft1.png";
+// import nft1 from "../assets/nft1.png";
+import propTypes from "prop-types";
 
-const Card = (props) => {
+const Card = ({ name, ownerAddress, mintAddress, tokenAddress, img }) => {
+  // shorten the addressess for display
+  let address = ownerAddress;
+  let firstFive = address.substring(0, 5);
+  let lastThree = address.substring(address.length - 3);
+  const ownerAddShort = `${firstFive}...${lastThree}`;
+
+  address = mintAddress;
+  firstFive = address.substring(0, 5);
+  lastThree = address.substring(address.length - 3);
+  const mintAddressShort = `${firstFive}...${lastThree}`;
+
+  address = tokenAddress;
+  firstFive = address.substring(0, 5);
+  lastThree = address.substring(address.length - 3);
+  const tokenAddressShort = `${firstFive}...${lastThree}`;
+
   return (
     <div
       className=" mr-8 bg-black px-1 rounded-2xl flex flex-col justify-center items-center"
@@ -12,12 +29,12 @@ const Card = (props) => {
         className="flex justify-between"
         style={{ width: "364px", height: "32px" }}
       >
-        <h1 className="text-white ml-3">Cyberlinx #2551</h1>
+        <h1 className="text-white ml-3">{name}</h1>
         <Option />
       </div>
       {/* image  */}
       <div>
-        <img src={nft1} alt="" style={{ height: "364px", width: "364px" }} />
+        <img src={img} alt="" style={{ height: "364px", width: "364px" }} />
       </div>
       {/* details  */}
       <div
@@ -27,24 +44,32 @@ const Card = (props) => {
         <div className="flex justify-between mx-2 mt-2 p-2 bg-greylevel1 rounded-xl">
           <span className="text-white">Owner</span>
           <span className="text-greylevel3">
-            | <span className="text-greylevel4">72UGr...YdD</span>
+            | <span className="text-greylevel4">{ownerAddShort}</span>
           </span>
         </div>
         <div className="flex justify-between mx-2 mt-3 p-2 bg-greylevel1 rounded-xl">
           <span className="text-white">Mint address</span>
           <span className="text-greylevel3">
-            | <span className="text-greylevel4">72UGr...YdD</span>
+            | <span className="text-greylevel4">{mintAddressShort}</span>
           </span>
         </div>
         <div className="flex justify-between mx-2 mt-3 p-2 bg-greylevel1 rounded-xl">
           <span className="text-white">Token address</span>
           <span className="text-greylevel3">
-            | <span className="text-greylevel4">72UGr...YdD</span>
+            | <span className="text-greylevel4">{tokenAddressShort}</span>
           </span>
         </div>
       </div>
     </div>
   );
+};
+
+Card.propTypes = {
+  name: propTypes.string.isRequired,
+  ownerAddress: propTypes.string.isRequired,
+  mintAddress: propTypes.string.isRequired,
+  tokenAddress: propTypes.string.isRequired,
+  img: propTypes.string.isRequired,
 };
 
 export default Card;
