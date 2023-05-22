@@ -5,13 +5,13 @@ function App() {
   return (
     <>
       {/* Main container with 2 main components*/}
-      <div className="flex bg-black">
+      <div className="flex bg-black overflow-auto">
         {/* Nav on the left */}
         <Nav />
         {/* Dashboard on the right */}
         <div
           className="bg-greylevel3 z-10 rounded-r-none rounded-l-3xl w-screen"
-          style={{ height: "1006px" }}
+          // style={{ height: "1006px" }}
         >
           {/* Main container  */}
           <Dashboard />

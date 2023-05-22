@@ -41,7 +41,7 @@ const Card = ({ name, ownerAddress, mintAddress, tokenAddress, URI }) => {
     >
       {/* title and options  */}
       <div
-        className="flex justify-between"
+        className="flex justify-between mt-2"
         style={{ width: "364px", height: "32px" }}
       >
         <h1 className="text-white ml-3">{name}</h1>
@@ -49,7 +49,12 @@ const Card = ({ name, ownerAddress, mintAddress, tokenAddress, URI }) => {
       </div>
       {/* image  */}
       <div>
-        <img src={imgSrc} alt="" style={{ height: "364px", width: "364px" }} />
+        <img
+          src={imgSrc}
+          alt=""
+          style={{ height: "364px", width: "364px" }}
+          className="rounded-2xl"
+        />
       </div>
       {/* details  */}
       <div
@@ -57,19 +62,19 @@ const Card = ({ name, ownerAddress, mintAddress, tokenAddress, URI }) => {
         className="bg-greylevel2 mt-4 rounded-xl"
       >
         <div className="flex justify-between mx-2 mt-2 p-2 bg-greylevel1 rounded-xl">
-          <span className="text-white">Owner</span>
+          <span className="text-white text-sm">Owner</span>
           <span className="text-greylevel3">
             | <span className="text-greylevel4">{ownerAddShort}</span>
           </span>
         </div>
         <div className="flex justify-between mx-2 mt-3 p-2 bg-greylevel1 rounded-xl">
-          <span className="text-white">Mint address</span>
+          <span className="text-white text-sm">Mint address</span>
           <span className="text-greylevel3">
             | <span className="text-greylevel4">{mintAddressShort}</span>
           </span>
         </div>
         <div className="flex justify-between mx-2 mt-3 p-2 bg-greylevel1 rounded-xl">
-          <span className="text-white">Token address</span>
+          <span className="text-white text-sm">Token address</span>
           <span className="text-greylevel3">
             | <span className="text-greylevel4">{tokenAddressShort}</span>
           </span>

@@ -32,7 +32,6 @@ const Dashboard = () => {
     fetchData();
   }, []);
 
-  const array = [1, 2, 3];
   return (
     <div>
       {/* Price and user profile  */}
@@ -61,7 +60,7 @@ const Dashboard = () => {
       <div className="flex justify-between mt-6">
         {/* Price  */}
         <div className="mt-6 ml-14 flex space-x-2 rounded-xl">
-          <span className="text-white font-bold text-3xl">Dashboard</span>
+          <span className="text-white text-3xl">Dashboard</span>
         </div>
         {/* User profile  */}
         <div className="mt-6 mr-14 flex space-x-3 p-2 bg-greylevel2 rounded-xl">
@@ -74,19 +73,20 @@ const Dashboard = () => {
       <div className="mt-24 ml-14 flex mb-6 2xl:justify-around">
         {/* Render cards here*/}
         {nft &&
-          array.map((i) => {
+          nft.slice(1, 4).map((i, index) => {
             return (
               <Card
-                key={i}
-                name={nft[i].name}
-                ownerAddress={nft[i].creators[0].address.toBase58()}
-                mintAddress={nft[i].mintAddress.toBase58()}
-                tokenAddress={nft[i].address.toBase58()}
-                URI={nft[i].uri}
+                key={index}
+                name={i.name}
+                ownerAddress={i.creators[0].address.toBase58()}
+                mintAddress={i.mintAddress.toBase58()}
+                tokenAddress={i.address.toBase58()}
+                URI={i.uri}
               />
             );
           })}
       </div>
+
       {/* next and previous buttons  */}
       <div
         className="w-1/5 bg-black flex justify-between mx-auto rounded-full"
