@@ -8,10 +8,33 @@ import Card from "./Card";
 import { PublicKey } from "@solana/web3.js";
 
 import metaplex from "../utils/metaplex";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Navigation } from "swiper";
+import "swiper/swiper-bundle.min.css";
+
+import "swiper/swiper.min.css";
+
+// Initialize Swiper core with navigation module
+SwiperCore.use([Navigation]);
 
 const Dashboard = () => {
   const [nft, setNft] = useState("");
+  const swiperRef = useRef(null);
+
+  const handleBackClick = () => {
+    console.log(swiperRef);
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slidePrev();
+    }
+  };
+
+  const handleForwardClick = () => {
+    console.log(swiperRef);
+    if (swiperRef.current && swiperRef.current.swiper) {
+      swiperRef.current.swiper.slideNext();
+    }
+  };
 
   // fetch nfts here
   useEffect(() => {
@@ -22,11 +45,7 @@ const Dashboard = () => {
       const myNfts = await metaplex.nfts().findAllByOwner({
         owner: ownerPublicKey,
       });
-      setNft(myNfts);
-      console.log(myNfts[1]);
-      console.log(myNfts[1].creators[0].address.toBase58());
-      console.log(myNfts[1].mintAddress.toBase58());
-      console.log(myNfts[1].address.toBase58());
+      setNft(myNfts.slice(1, 4));
     };
 
     fetchData();
@@ -70,21 +89,31 @@ const Dashboard = () => {
         </div>
       </div>
       {/* nft listing cards  */}
-      <div className="mt-24 ml-14 flex mb-6 2xl:justify-around">
-        {/* Render cards here*/}
-        {nft &&
-          nft.slice(1, 4).map((i, index) => {
-            return (
-              <Card
-                key={index}
-                name={i.name}
-                ownerAddress={i.creators[0].address.toBase58()}
-                mintAddress={i.mintAddress.toBase58()}
-                tokenAddress={i.address.toBase58()}
-                URI={i.uri}
-              />
-            );
-          })}
+      <div className="mt-24 ml-12 mb-6 2xl:justify-around">
+        {nft.length > 0 && (
+          <Swiper
+            ref={swiperRef}
+            slidesPerView={3}
+            spaceBetween={0}
+            navigation
+            loop
+            loopedSlides={2}
+            className="swiper-container"
+            style={{ "--swiper-navigation-color": "transparent" }}
+          >
+            {nft.map((item, index) => (
+              <SwiperSlide key={index} className="swiper-slide">
+                <Card
+                  name={item.name}
+                  ownerAddress={item.creators[0].address.toBase58()}
+                  mintAddress={item.mintAddress.toBase58()}
+                  tokenAddress={item.address.toBase58()}
+                  URI={item.uri}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
       </div>
 
       {/* next and previous buttons  */}
@@ -92,10 +121,16 @@ const Dashboard = () => {
         className="w-1/5 bg-black flex justify-between mx-auto rounded-full"
         style={{ height: "78px" }}
       >
-        <button className="text-white m-3 px-5  bg-greylevel2 rounded-full">
+        <button
+          className="text-white m-3 px-5  bg-greylevel2 rounded-full"
+          onClick={handleBackClick}
+        >
           <Back />
         </button>
-        <button className="text-white m-3 px-5  bg-greylevel2 rounded-full">
+        <button
+          className="text-white m-3 px-5  bg-greylevel2 rounded-full"
+          onClick={handleForwardClick}
+        >
           <Forward />
         </button>
       </div>

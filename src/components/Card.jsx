@@ -1,11 +1,14 @@
 import Option from "../icons/Option";
-// import nft1 from "../assets/nft1.png";
 import propTypes from "prop-types";
 import { useState, useEffect } from "react";
 
 const Card = ({ name, ownerAddress, mintAddress, tokenAddress, URI }) => {
   const [imgSrc, setImgSrc] = useState("");
+  const [ownerAddShort, setOwnerAddShort] = useState("");
+  const [mintAddressShort, setMintAddressShort] = useState("");
+  const [tokenAddressShort, setTokenAddressShort] = useState("");
 
+  // fetch the image from the URI provided
   useEffect(() => {
     const fetchImageData = async () => {
       const uri = URI;
@@ -18,30 +21,37 @@ const Card = ({ name, ownerAddress, mintAddress, tokenAddress, URI }) => {
     fetchImageData();
   }, [URI]);
 
-  // shorten the addressess for display
-  let address = ownerAddress;
-  let firstFive = address.substring(0, 5);
-  let lastThree = address.substring(address.length - 3);
-  const ownerAddShort = `${firstFive}...${lastThree}`;
+  // shorten the addresses for display
+  useEffect(() => {
+    shorten(ownerAddress);
+    shorten(mintAddress);
+    shorten(tokenAddress);
+  }, []);
 
-  address = mintAddress;
-  firstFive = address.substring(0, 5);
-  lastThree = address.substring(address.length - 3);
-  const mintAddressShort = `${firstFive}...${lastThree}`;
+  const shorten = (address) => {
+    // grab the first 5 and last 3 characters from the address
+    const firstFive = address.substring(0, 5);
+    const lastThree = address.substring(address.length - 3);
+    const short = `${firstFive}...${lastThree}`;
 
-  address = tokenAddress;
-  firstFive = address.substring(0, 5);
-  lastThree = address.substring(address.length - 3);
-  const tokenAddressShort = `${firstFive}...${lastThree}`;
+    if (address === ownerAddress) {
+      setOwnerAddShort(short);
+    } else if (address === tokenAddress) {
+      setTokenAddressShort(short);
+    } else if (address === mintAddress) {
+      setMintAddressShort(short);
+    }
+  };
 
   return (
     <div
-      className=" mr-8 bg-black px-1 rounded-2xl flex flex-col justify-center items-center"
+      id={tokenAddress}
+      className=" mr-8 bg-black px-1 rounded-2xl flex flex-col justify-center items-center transition delay-100"
       style={{ width: "388px", height: "600px" }}
     >
       {/* title and options  */}
       <div
-        className="flex justify-between mt-2"
+        className="flex justify-between mt-1"
         style={{ width: "364px", height: "32px" }}
       >
         <h1 className="text-white ml-3">{name}</h1>
@@ -58,25 +68,25 @@ const Card = ({ name, ownerAddress, mintAddress, tokenAddress, URI }) => {
       </div>
       {/* details  */}
       <div
-        style={{ width: "364px", height: "168px" }}
+        style={{ width: "364px", height: "160px" }}
         className="bg-greylevel2 mt-4 rounded-xl"
       >
         <div className="flex justify-between mx-2 mt-2 p-2 bg-greylevel1 rounded-xl">
           <span className="text-white text-sm">Owner</span>
           <span className="text-greylevel3">
-            | <span className="text-greylevel4">{ownerAddShort}</span>
+            | <span className="text-greylevel4 ml-1">{ownerAddShort}</span>
           </span>
         </div>
         <div className="flex justify-between mx-2 mt-3 p-2 bg-greylevel1 rounded-xl">
           <span className="text-white text-sm">Mint address</span>
           <span className="text-greylevel3">
-            | <span className="text-greylevel4">{mintAddressShort}</span>
+            | <span className="text-greylevel4 ml-1">{mintAddressShort}</span>
           </span>
         </div>
         <div className="flex justify-between mx-2 mt-3 p-2 bg-greylevel1 rounded-xl">
           <span className="text-white text-sm">Token address</span>
           <span className="text-greylevel3">
-            | <span className="text-greylevel4">{tokenAddressShort}</span>
+            | <span className="text-greylevel4 ml-1">{tokenAddressShort}</span>
           </span>
         </div>
       </div>

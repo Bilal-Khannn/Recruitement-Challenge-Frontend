@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       {/* Main container with 2 main components*/}
-      <div className="flex bg-black overflow-auto">
+      <div className="flex bg-black w-screen min-h-screen">
         {/* Nav on the left */}
         <Nav />
         {/* Dashboard on the right */}

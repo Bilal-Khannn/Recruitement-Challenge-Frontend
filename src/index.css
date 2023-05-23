@@ -5,7 +5,7 @@
 /* Example in a CSS file */
 @font-face {
   font-family: "SFProText";
-  src: url("../public/fonts/SF-Pro-Text-Regular.otf") format("truetype");
+  src: url("/fonts/SF-Pro-Text-Regular.otf") format("truetype");
   /* Add more variations or font files here */
 }
 
