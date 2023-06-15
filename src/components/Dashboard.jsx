@@ -23,23 +23,23 @@ const Dashboard = () => {
   const swiperRef = useRef(null);
 
   const handleBackClick = () => {
-    console.log(swiperRef);
     if (swiperRef.current && swiperRef.current.swiper) {
       swiperRef.current.swiper.slidePrev();
     }
   };
 
   const handleForwardClick = () => {
-    console.log(swiperRef);
     if (swiperRef.current && swiperRef.current.swiper) {
       swiperRef.current.swiper.slideNext();
     }
   };
 
-  // fetch nfts here
+  // fetch nfts herex
   useEffect(() => {
     const ownerPublicKey = new PublicKey(
       "narfn77NVRRfa4frg1KZykyFrJ1f9eMGnzXeMn2ja1X"
+      // "saad8rHQzNJkb3sX3jJZR4qChRPvR94uradmDFJQQuV"
+      // "basedj4dGxS3FMTEKhw983wCxE2WyPBTEtnG31zRfD1"
     );
     const fetchData = async () => {
       const myNfts = await metaplex.nfts().findAllByOwner({
@@ -90,7 +90,7 @@ const Dashboard = () => {
       </div>
       {/* nft listing cards  */}
       <div className="mt-24 ml-12 mb-6 2xl:justify-around">
-        {nft.length > 0 && (
+        {nft.length > 0 ? (
           <Swiper
             ref={swiperRef}
             slidesPerView={3}
@@ -113,6 +113,10 @@ const Dashboard = () => {
               </SwiperSlide>
             ))}
           </Swiper>
+        ) : (
+          <div className="flex justify-center text-white font-bold text-3xl mb-28">
+            Loading . . .
+          </div>
         )}
       </div>
 

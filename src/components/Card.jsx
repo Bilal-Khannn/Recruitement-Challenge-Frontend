@@ -58,14 +58,23 @@ const Card = ({ name, ownerAddress, mintAddress, tokenAddress, URI }) => {
         <Option />
       </div>
       {/* image  */}
-      <div>
-        <img
-          src={imgSrc}
-          alt=""
+      {imgSrc ? (
+        <div>
+          <img
+            src={imgSrc}
+            alt=""
+            style={{ height: "364px", width: "364px" }}
+            className="rounded-2xl"
+          />
+        </div>
+      ) : (
+        <div
+          className="text-white text-3xl flex justify-center items-center"
           style={{ height: "364px", width: "364px" }}
-          className="rounded-2xl"
-        />
-      </div>
+        >
+          Loading...
+        </div>
+      )}
       {/* details  */}
       <div
         style={{ width: "364px", height: "160px" }}
